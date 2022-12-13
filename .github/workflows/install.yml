@@ -1,0 +1,45 @@
+on: [push, repository_dispatch, workflow_dispatch]
+
+env:
+  DOTNET_NOLOGO: true
+  OWNER: github-packages-examples
+  PACKAGE_NAME: nuget-publish
+
+jobs:
+  checkout-and-install:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: 3.1.x
+
+      - name: Run the project
+        run: dotnet run
+        env:
+          GITHUB_TOKEN: ${{ secrets.READ_PACKAGES_TOKEN }}
+
+  create-and-install:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: 3.1.x
+          source-url: https://nuget.pkg.github.com/${{ env.OWNER }}/index.json
+        env:
+          NUGET_AUTH_TOKEN: ${{ secrets.READ_PACKAGES_TOKEN }}
+
+      - name: Create a .NET Core console project
+        run: dotnet new console
+
+      - name: Add Program.cs
+        run: echo 'class Program { static void Main() { NuGetPublish.SayHello(); } }' > Program.cs
+
+      - name: Install nuget-publish package
+        run: dotnet add package ${{ env.PACKAGE_NAME }}
+
+      - name: Run the project
+        run: dotnet run
