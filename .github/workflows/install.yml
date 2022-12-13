@@ -4,6 +4,7 @@ env:
   DOTNET_NOLOGO: true
   OWNER: github-packages-examples
   PACKAGE_NAME: nuget-publish
+  PACKAGE_VERSION: 1.1.18
 
 jobs:
   checkout-and-install:
@@ -17,7 +18,7 @@ jobs:
           dotnet-version: 3.1.x
 
       - name: Add the package
-        run: dotnet add . package nuget-publish --version 1.1.18
+        run: dotnet add . package ${{ env.PACKAGE_NAME }} --version ${{ env.PACKAGE_VERSION }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
