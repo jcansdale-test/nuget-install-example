@@ -19,4 +19,4 @@ jobs:
       - name: Run the project
         run: dotnet run
         env:
-          GITHUB_TOKEN: ${{ secrets.READ_PACKAGES_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
