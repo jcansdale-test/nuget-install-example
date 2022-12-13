@@ -18,6 +18,8 @@ jobs:
 
       - name: Add the package
         run: dotnet add . package nuget-publish --version 1.1.18
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Run the project
         run: dotnet run
