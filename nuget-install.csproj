@@ -13,7 +13,6 @@
   </Target>
 
   <ItemGroup>
-    <PackageReference Include="nuget-publish" Version="1.1.18" />
   </ItemGroup>
 
 </Project>
