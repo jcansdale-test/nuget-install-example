@@ -2,7 +2,6 @@ on: [push, repository_dispatch, workflow_dispatch]
 
 env:
   DOTNET_NOLOGO: true
-  OWNER: github-packages-examples
   PACKAGE_NAME: nuget-publish
   PACKAGE_VERSION: 1.1.18
   PACKAGE_SOURCE: https://nuget.pkg.github.com/github-packages-examples/index.json
