@@ -6,6 +6,7 @@ env:
   PACKAGE_NAME: nuget-publish
   PACKAGE_VERSION: 1.1.18
   PACKAGE_SOURCE: https://nuget.pkg.github.com/github-packages-examples/index.json
+  READ_PACKAGES_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 jobs:
   checkout-and-install:
@@ -30,10 +31,10 @@ jobs:
               <packageSourceCredentials>
                   <tt>
                       <add key="Username" value="token" />
-                      <add key="ClearTextPassword" value="${{ secrets.GITHUB_TOKEN }}" />
+                      <add key="ClearTextPassword" value="${{ env.PACKAGE_TOKEN }}" />
                   </tt>
               </packageSourceCredentials>
           </configuration>' > nuget.config
 
       - name: Add the package${{ env.PACKAGE_VERSION }}
-        run: dotnet add . package ${{ env.PACKAGE_NAME }} --version ${{ env.PACKAGE_VERSION }}
+        run: dotnet add . package ${{ env.PACKAGE_NAME }} --version ${{ env.READ_PACKAGES_TOKEN }}
