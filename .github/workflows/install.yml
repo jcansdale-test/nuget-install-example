@@ -17,6 +17,23 @@ jobs:
       - uses: actions/setup-dotnet@v1
         with:
           dotnet-version: 3.1.x
+          
+      - name: Create nuget.config
+        run: |
+          echo '<?xml version="1.0" encoding="utf-8"?>
+          <configuration>
+              <packageSources>
+                  <clear />
+                  <add key="nuget.org" value="https://api.nuget.org/v3/index.json" />
+                  <add key="tt" value="https://nuget.pkg.github.com/github-packages-examples/index.json" />
+              </packageSources>
+              <packageSourceCredentials>
+                  <tt>
+                      <add key="Username" value="token" />
+                      <add key="ClearTextPassword" value="%GITHUB_TOKEN%" />
+                  </tt>
+              </packageSourceCredentials>
+          </configuration>' > nuget.config
 
       - name: Add the package${{ env.PACKAGE_VERSION }}
         run: dotnet add . package ${{ env.PACKAGE_NAME }} --version ${{ env.PACKAGE_VERSION }} -s ${{ env.PACKAGE_SOURCE }}
