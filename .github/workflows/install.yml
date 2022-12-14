@@ -25,7 +25,7 @@ jobs:
               <packageSources>
                   <clear />
                   <add key="nuget.org" value="https://api.nuget.org/v3/index.json" />
-                  <add key="tt" value="https://nuget.pkg.github.com/github-packages-examples/index.json" />
+                  <add key="tt" value="${{ env.PACKAGE_SOURCE }}" />
               </packageSources>
               <packageSourceCredentials>
                   <tt>
