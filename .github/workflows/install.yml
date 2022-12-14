@@ -16,6 +16,8 @@ jobs:
         with:
           dotnet-version: 3.1.x
           
+      - run: dotnet new console
+          
       - name: Create nuget.config
         run: |
           echo '<?xml version="1.0" encoding="utf-8"?>
