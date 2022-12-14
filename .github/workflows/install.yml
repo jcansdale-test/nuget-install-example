@@ -30,17 +30,10 @@ jobs:
               <packageSourceCredentials>
                   <tt>
                       <add key="Username" value="token" />
-                      <add key="ClearTextPassword" value="%GITHUB_TOKEN%" />
+                      <add key="ClearTextPassword" value="${{ secrets.GITHUB_TOKEN }}" />
                   </tt>
               </packageSourceCredentials>
           </configuration>' > nuget.config
 
       - name: Add the package${{ env.PACKAGE_VERSION }}
-        run: dotnet add . package ${{ env.PACKAGE_NAME }} --version ${{ env.PACKAGE_VERSION }} -s ${{ env.PACKAGE_SOURCE }}
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Run the project
-        run: dotnet run
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: dotnet add . package ${{ env.PACKAGE_NAME }} --version ${{ env.PACKAGE_VERSION }}
