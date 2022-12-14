@@ -36,4 +36,4 @@ jobs:
           </configuration>' > nuget.config
 
       - name: Add the package${{ env.PACKAGE_VERSION }}
-        run: dotnet add . package ${{ env.PACKAGE_NAME }} --version ${{ env.READ_PACKAGES_TOKEN }}
+        run: dotnet add . package ${{ env.PACKAGE_NAME }} --version ${{ env.PACKAGE_VERSION }}
