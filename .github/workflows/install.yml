@@ -31,7 +31,7 @@ jobs:
               <packageSourceCredentials>
                   <tt>
                       <add key="Username" value="token" />
-                      <add key="ClearTextPassword" value="${{ env.PACKAGE_TOKEN }}" />
+                      <add key="ClearTextPassword" value="${{ env.READ_PACKAGES_TOKEN }}" />
                   </tt>
               </packageSourceCredentials>
           </configuration>' > nuget.config
